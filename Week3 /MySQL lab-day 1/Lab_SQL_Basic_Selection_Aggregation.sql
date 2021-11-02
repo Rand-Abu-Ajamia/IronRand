@@ -20,9 +20,12 @@ order by status asc;
 #loan id of the highest payment 
 select loan_id from bank.loan
 order by (payments) desc limit 1;
+#solution from Rafa
+select loan_id,max(payments) as max_p from loan 
+group by loan_id order by max_p desc limit 1;
 
 #the lowest 5 account ids and the corresponding amount 
-select account_id, amount from bank.loan
+select account_id as "#id", amount from bank.loan
 order by (account_id) limit 5;
 
 #account_ids with the lowest loan amount and have a loan duration of 60 
@@ -52,17 +55,22 @@ where account_id=793
 order by date desc;
 
 #n the client table, of all districts with a district_id lower than 10, how many clients are from each district_id? Show the results sorted by the district_id in ascending order.
-select  district_id, count(client_id) from bank.client
-where district_id<10;
+select  
+district_id
+count(client_id) 
+from bank.client
+where district_id<10
+group by district_id;
 
 #how many cards exist for each type 
-select distinct type,count(type) from bank.card
-order by type
+select  type, count(*)
+from bank.card
+group by type;
 
 select distinct count(type) from bank.card
 
-
-
+select 
+district_id
 
 
 
